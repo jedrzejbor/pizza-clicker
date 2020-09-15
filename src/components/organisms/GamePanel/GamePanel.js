@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../../atoms/button/Button";
 import Title from "../../atoms/title/Title";
 import pizza from "../../../images/pizza.png";
 
@@ -32,8 +31,8 @@ const GamePanel = ({ name, titleName }) => {
   return (
     <Wrapper>
       <WrapperButton>
-        <Button name="1$ per click" />
-        <Button name="1$ per second" />
+        <Title titleName="1$ per click" />
+        <Title titleName="1$ per second" />
       </WrapperButton>
       <WrapperPizza>
         <PizzaClicker src={pizza} />
