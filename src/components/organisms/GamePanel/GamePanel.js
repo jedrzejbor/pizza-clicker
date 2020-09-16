@@ -15,8 +15,11 @@ const WrapperButton = styled.div`
   align-items: center;
 `;
 const WrapperPizza = styled.div`
-  height: 85%;
+  height: 70%;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const PizzaClicker = styled.img`
@@ -24,10 +27,23 @@ const PizzaClicker = styled.img`
   width: 80%;
 `;
 const WrapperPizzaStats = styled.div`
-  height: 30%;
+  height: 15%;
   width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
-const GamePanel = ({ name, titleName }) => {
+
+const WrapperOneStat = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Number = styled.p``;
+
+const GamePanel = () => {
   return (
     <Wrapper>
       <WrapperButton>
@@ -36,11 +52,17 @@ const GamePanel = ({ name, titleName }) => {
       </WrapperButton>
       <WrapperPizza>
         <PizzaClicker src={pizza} />
-        <WrapperPizzaStats>
-          <Title titleName="Clicks" />
-          <Title titleName="Money" />
-        </WrapperPizzaStats>
       </WrapperPizza>
+      <WrapperPizzaStats>
+        <WrapperOneStat>
+          <Title titleName="Clicks" />
+          <Number>412</Number>
+        </WrapperOneStat>
+        <WrapperOneStat>
+          <Title titleName="Money" />
+          <Number>4412</Number>
+        </WrapperOneStat>
+      </WrapperPizzaStats>
     </Wrapper>
   );
 };
