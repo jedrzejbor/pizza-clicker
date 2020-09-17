@@ -8,8 +8,12 @@ const ButtonAll = styled.button`
   width: 90%;
 `;
 
-const Button = ({ name }) => {
-  return <ButtonAll> {name} </ButtonAll>;
+const Button = ({ nameId, getMoreMoney, name }) => {
+  return (
+    <ButtonAll id={nameId} onClick={getMoreMoney}>
+      {name}
+    </ButtonAll>
+  );
 };
 
 export default Button;
