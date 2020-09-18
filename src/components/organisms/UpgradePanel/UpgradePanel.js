@@ -93,6 +93,38 @@ const ClickWrapper = styled.div`
 `;
 
 const UpgradePanel = () => {
+  const [valueChangeClick, setValueChangeClick] = useState([
+    {
+      id: 0,
+      number: "01.",
+      title: "Margharita",
+      money: 50,
+    },
+    {
+      id: 1,
+      number: "02.",
+      title: "Funghi",
+      money: 500,
+    },
+    {
+      id: 2,
+      number: "03.",
+      title: "Capriciosa",
+      money: 5000,
+    },
+    {
+      id: 3,
+      number: "04.",
+      title: "Hawaii",
+      money: 50000,
+    },
+    {
+      id: 4,
+      number: "05.",
+      title: "Chicken",
+      money: 500000,
+    },
+  ]);
   const [valueChange, setValueChange] = useState([
     {
       id: 0,
@@ -126,14 +158,25 @@ const UpgradePanel = () => {
     },
   ]);
 
-  const moreMoney = (index) => (e) => {
+  const moreMoney = (index) => () => {
     console.log(index);
-    console.log(e);
+    // console.log(e);
     let newArray = [...valueChange];
-    newArray[index].money = newArray[index].money * 5;
+    newArray[index].money = Math.round(
+      newArray[index].money + (newArray[index].money / 100) * 5
+    );
     setValueChange(newArray);
   };
 
+  const moreMoneyClick = (index) => () => {
+    console.log(index);
+    // console.log(e);
+    let newArray = [...valueChangeClick];
+    newArray[index].money = Math.round(
+      newArray[index].money + (newArray[index].money / 100) * 5
+    );
+    setValueChangeClick(newArray);
+  };
   return (
     <Wrapper>
       <SecondWrapper>
@@ -151,8 +194,15 @@ const UpgradePanel = () => {
       </SecondWrapper>
       <ClickWrapper>
         <Title titleName="PER CLICK" />
-        {optionsClick.map(({ id, number, title }) => {
-          return <Button key={id} name={number + title} />;
+        {valueChangeClick.map((element, index) => {
+          return (
+            <Button
+              nameId={element.title}
+              key={element.id}
+              name={element.number + " " + element.title + " " + element.money}
+              getMoreMoney={moreMoneyClick(index)}
+            />
+          );
         })}
       </ClickWrapper>
     </Wrapper>
