@@ -96,7 +96,7 @@ const UpgradePanel = () => {
     console.log(index);
     let newArray = [...valueChange];
     newArray[index].money = Math.round(
-      newArray[index].money + (newArray[index].money / 100) * 5
+      newArray[index].money + (newArray[index].money / 100) * 9
     );
     setValueChange(newArray);
   };
@@ -105,7 +105,7 @@ const UpgradePanel = () => {
     console.log(index);
     let newArray = [...valueChangeClick];
     newArray[index].money = Math.round(
-      newArray[index].money + (newArray[index].money / 100) * 5
+      newArray[index].money + (newArray[index].money / 100) * 9
     );
     setValueChangeClick(newArray);
   };

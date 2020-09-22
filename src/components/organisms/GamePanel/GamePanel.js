@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Title from "../../atoms/title/Title";
 import pizza from "../../../images/pizza.png";
@@ -44,6 +44,8 @@ const WrapperOneStat = styled.div`
 const Number = styled.p``;
 
 const GamePanel = () => {
+  const [valueClicks, setValueClicks] = useState(0);
+  const [valueMoney, setValueMoney] = useState(0);
   return (
     <Wrapper>
       <WrapperButton>
@@ -51,16 +53,22 @@ const GamePanel = () => {
         <Title titleName="1$ per second" />
       </WrapperButton>
       <WrapperPizza>
-        <PizzaClicker src={pizza} />
+        <PizzaClicker
+          src={pizza}
+          onClick={() => {
+            setValueClicks(valueClicks + 1);
+            setValueMoney(valueMoney + 1);
+          }}
+        />
       </WrapperPizza>
       <WrapperPizzaStats>
         <WrapperOneStat>
           <Title titleName="Clicks" />
-          <Number>412</Number>
+          <Number>{valueClicks}</Number>
         </WrapperOneStat>
         <WrapperOneStat>
           <Title titleName="Money" />
-          <Number>4412</Number>
+          <Number>{valueMoney}</Number>
         </WrapperOneStat>
       </WrapperPizzaStats>
     </Wrapper>
