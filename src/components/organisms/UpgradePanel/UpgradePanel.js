@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import Button from "../../atoms/button/Button";
 import Title from "../../atoms/title/Title";
+import MoneyPerSecForm from '../../../app/moneyPerSec/components/moneyPerSecForm';
+import MoneyPerClickForm from '../../../app/moneyPerClick/components/moneyPerClickForm';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -27,118 +28,20 @@ const ClickWrapper = styled.div`
 `;
 
 const UpgradePanel = () => {
-  const [valueChangeClick, setValueChangeClick] = useState([
-    {
-      id: 0,
-      number: "01.",
-      title: "Margharita",
-      money: 50,
-    },
-    {
-      id: 1,
-      number: "02.",
-      title: "Funghi",
-      money: 500,
-    },
-    {
-      id: 2,
-      number: "03.",
-      title: "Capriciosa",
-      money: 5000,
-    },
-    {
-      id: 3,
-      number: "04.",
-      title: "Hawaii",
-      money: 50000,
-    },
-    {
-      id: 4,
-      number: "05.",
-      title: "Chicken",
-      money: 500000,
-    },
-  ]);
-  const [valueChange, setValueChange] = useState([
-    {
-      id: 0,
-      number: "01.",
-      title: "Employee",
-      money: 50,
-    },
-    {
-      id: 1,
-      number: "02.",
-      title: "Advertisment",
-      money: 500,
-    },
-    {
-      id: 2,
-      number: "03.",
-      title: "Scooter",
-      money: 5000,
-    },
-    {
-      id: 3,
-      number: "04.",
-      title: "Car",
-      money: 50000,
-    },
-    {
-      id: 4,
-      number: "05.",
-      title: "Premises",
-      money: 500000,
-    },
-  ]);
 
-  const moreMoney = (index) => () => {
-    console.log(index);
-    let newArray = [...valueChange];
-    newArray[index].money = Math.round(
-      newArray[index].money + (newArray[index].money / 100) * 9
-    );
-    setValueChange(newArray);
-  };
-
-  const moreMoneyClick = (index) => () => {
-    console.log(index);
-    let newArray = [...valueChangeClick];
-    newArray[index].money = Math.round(
-      newArray[index].money + (newArray[index].money / 100) * 9
-    );
-    setValueChangeClick(newArray);
-  };
   return (
     <Wrapper>
       <SecondWrapper>
         <Title titleName="PER SEC" />
-        {valueChange.map((element, index) => {
-          return (
-            <Button
-              nameId={element.title}
-              key={element.id}
-              name={element.number + " " + element.title + " " + element.money}
-              getMoreMoney={moreMoney(index)}
-            />
-          );
-        })}
+        <MoneyPerSecForm></MoneyPerSecForm>
       </SecondWrapper>
       <ClickWrapper>
         <Title titleName="PER CLICK" />
-        {valueChangeClick.map((element, index) => {
-          return (
-            <Button
-              nameId={element.title}
-              key={element.id}
-              name={element.number + " " + element.title + " " + element.money}
-              getMoreMoney={moreMoneyClick(index)}
-            />
-          );
-        })}
+        <MoneyPerClickForm></MoneyPerClickForm>
       </ClickWrapper>
     </Wrapper>
   );
 };
 
 export default UpgradePanel;
+

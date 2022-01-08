@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux';
 import styled from "styled-components";
 import Title from "../../atoms/title/Title";
+import MoneyCounterPerClick from "../../../app/moneyPerClick/components/moneyCounterPerClick";
+import MoneyCounterPerSecForm from "../../../app/moneyPerSec/components/moneyCounterPerSecForm";
+import MoneyShow from "../../../app/moneyGlobal/components/moneyShow";
 import pizza from "../../../images/pizza.png";
+import actionsMoney from '../../../app/moneyGlobal/duck/actions';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -43,21 +48,34 @@ const WrapperOneStat = styled.div`
 
 const Number = styled.p``;
 
-const GamePanel = () => {
+const GamePanel = ({moneyPerClick, moneyPerSec, additionMoney}) => {
   const [valueClicks, setValueClicks] = useState(0);
-  const [valueMoney, setValueMoney] = useState(0);
+
+
+  useEffect(() => {
+    let interval;
+
+      interval = setInterval(() => {
+        additionMoney(parseInt(moneyPerSec.counter_data.toFixed(2)))
+      }, 1000);
+
+   return () => clearInterval(interval);
+  })
+
   return (
     <Wrapper>
       <WrapperButton>
-        <Title titleName="1$ per click" />
-        <Title titleName="1$ per second" />
+        {/* <Title titleName="1$ per click" /> */}
+        {/* <Title titleName="1$ per second" /> */}
+        <MoneyCounterPerSecForm />
+        <MoneyCounterPerClick />
       </WrapperButton>
       <WrapperPizza>
         <PizzaClicker
           src={pizza}
           onClick={() => {
             setValueClicks(valueClicks + 1);
-            setValueMoney(valueMoney + 1);
+            additionMoney(parseInt(moneyPerClick.counter_data.toFixed(2)));
           }}
         />
       </WrapperPizza>
@@ -66,13 +84,19 @@ const GamePanel = () => {
           <Title titleName="Clicks" />
           <Number>{valueClicks}</Number>
         </WrapperOneStat>
-        <WrapperOneStat>
-          <Title titleName="Money" />
-          <Number>{valueMoney}</Number>
-        </WrapperOneStat>
+        <MoneyShow/>
       </WrapperPizzaStats>
     </Wrapper>
   );
 };
 
-export default GamePanel;
+const mapStateToProps = state => ({
+  moneyPerClick: state.moneyPerClick,
+  moneyPerSec: state.moneyPerSec
+})
+
+const mapDispatchToProps = dispatch => ({
+  additionMoney: value => dispatch(actionsMoney.additionMoney(value)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamePanel);

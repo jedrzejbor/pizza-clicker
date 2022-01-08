@@ -8,9 +8,9 @@ const ButtonAll = styled.button`
   width: 90%;
 `;
 
-const Button = ({ nameId, getMoreMoney, name }) => {
+const Button = ({ getMoreMoney, name, id }) => {
   return (
-    <ButtonAll id={nameId} onClick={getMoreMoney}>
+    <ButtonAll id={id} onClick={getMoreMoney}>
       {name}
     </ButtonAll>
   );
