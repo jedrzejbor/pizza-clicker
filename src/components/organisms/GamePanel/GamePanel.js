@@ -55,12 +55,12 @@ const GamePanel = ({moneyPerClick, moneyPerSec, additionMoney}) => {
   useEffect(() => {
     let interval;
 
-      interval = setInterval(() => {
-        additionMoney(parseInt(moneyPerSec.counter_data.toFixed(2)))
-      }, 1000);
+    interval = setInterval(() => {
+      additionMoney(parseInt(moneyPerSec.counter_data.toFixed(2)))
+    }, 1000);
 
-   return () => clearInterval(interval);
-  })
+    return () => clearInterval(interval);
+  },[moneyPerSec.counter_data.toFixed(2)])
 
   return (
     <Wrapper>

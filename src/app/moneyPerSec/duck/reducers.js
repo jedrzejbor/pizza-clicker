@@ -44,7 +44,7 @@ const moneyPerSec = (state = INITIAL_STATE, action) => {
           ...button, money: Math.round(
             button.money + (button.money / 100) * 5
           )} : button),
-        counter_data: state.counter_data + (state.buttons[action.number].money / 1000)
+        counter_data: state.counter_data + (state.buttons[action.number].money / 100)
         };
     // case types.ADD_ITEM:
     //   return {
